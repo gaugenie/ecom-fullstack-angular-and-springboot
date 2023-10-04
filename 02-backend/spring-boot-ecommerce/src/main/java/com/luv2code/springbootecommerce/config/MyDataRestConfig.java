@@ -15,12 +15,11 @@ import java.util.List;
 import java.util.Set;
 @Configuration
 public class MyDataRestConfig implements RepositoryRestConfigurer {
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
     @Autowired
     public MyDataRestConfig(EntityManager theEntityManager) {
         entityManager = theEntityManager;
     }
-
 
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
@@ -30,8 +29,8 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
         // disable HTTP methods for ProductCategory: PUT, POST and DELETE
         disableHttpMethods(Product.class, config, theUnsupportedActions);
         disableHttpMethods(ProductCategory.class, config, theUnsupportedActions);
-        //disableHttpMethods(Country.class, config, theUnsupportedActions);
-        //disableHttpMethods(State.class, config, theUnsupportedActions);
+        // disableHttpMethods(Country.class, config, theUnsupportedActions);
+        // disableHttpMethods(State.class, config, theUnsupportedActions);
 
         // call an internal helper method
         exposeIds(config);
@@ -48,7 +47,6 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
 
         // expose entity ids
         //
-
         // - get a list of all entity classes from the entity manager
         Set<EntityType<?>> entities = entityManager.getMetamodel().getEntities();
 
