@@ -1,7 +1,9 @@
 package com.luv2code.springbootecommerce.config;
 
+import com.luv2code.springbootecommerce.entity.Country;
 import com.luv2code.springbootecommerce.entity.Product;
 import com.luv2code.springbootecommerce.entity.ProductCategory;
+import com.luv2code.springbootecommerce.entity.State;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.metamodel.EntityType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +31,8 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
         // disable HTTP methods for ProductCategory: PUT, POST and DELETE
         disableHttpMethods(Product.class, config, theUnsupportedActions);
         disableHttpMethods(ProductCategory.class, config, theUnsupportedActions);
-        // disableHttpMethods(Country.class, config, theUnsupportedActions);
-        // disableHttpMethods(State.class, config, theUnsupportedActions);
+        disableHttpMethods(Country.class, config, theUnsupportedActions);
+        disableHttpMethods(State.class, config, theUnsupportedActions);
 
         // call an internal helper method
         exposeIds(config);

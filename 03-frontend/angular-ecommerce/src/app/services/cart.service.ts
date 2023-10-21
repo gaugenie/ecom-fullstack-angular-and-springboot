@@ -85,6 +85,7 @@ export class CartService {
     console.log('----');
   }
 
+  
   decrementQuantity(theCartItem: CartItem) {
     theCartItem.quantity--;
 
@@ -93,7 +94,17 @@ export class CartService {
     } else {
       this.computeCartTotals();
     }
+
+    //get index of item in the array
+    const itemIndex = this.cartItems.findIndex(tempCartItem => tempCartItem.id == theCartItem.id);
+
+    // if found ,  remove the item from the array at the given index
+    if(itemIndex > -1){
+      this.cartItems.splice(itemIndex, 1);
+      this.computeCartTotals();
+    }
   }
+  
   remove(theCartItem: CartItem) {
     //get index of item in the array
     const itemIndex = this.cartItems.findIndex(
@@ -107,4 +118,5 @@ export class CartService {
       this.computeCartTotals();
     }
   }
+  
 }
